@@ -259,7 +259,7 @@ def main():
         date_received = st.date_input("收样日期", value=default_date)
         
         default_info = "POWERLD ENTERPRISES CO LTD\nPDF-150-15\nInput: 100-240V~, 50-60Hz, 2.0A\nOutput: 15VDC, 10A"
-        product_info = st.text_area("整机规格描述", value=default_info, height=120)
+        product_info = st.text_area("整机规格描述", value=default_info, height=160)
 
     # --- Main: 标签页 ---
     tab_main, tab_config = st.tabs(["任务台", "参数配置"])
@@ -377,3 +377,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
