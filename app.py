@@ -12,7 +12,7 @@ import os
 CONFIG_FILE = 'sample_gen_config.json'
 
 # ==========================================
-# 核心逻辑类 (保持 v7.0 逻辑不变)
+# 核心逻辑类
 # ==========================================
 
 class SampleGenerator:
@@ -245,7 +245,6 @@ def get_date_from_project_no(project_no):
 def main():
     st.set_page_config(page_title="Sample List Generator", layout="wide")
     
-    # 极简标题
     st.title("安规样品表生成工具")
     
     if 'generator' not in st.session_state:
@@ -260,7 +259,7 @@ def main():
         date_received = st.date_input("收样日期", value=default_date)
         
         default_info = "POWERLD ENTERPRISES CO LTD\nPDF-150-15\nInput: 100-240V~, 50-60Hz, 2.0A\nOutput: 15VDC, 10A"
-        product_info = st.text_area("整机规格描述", value=default_info, height=200)
+        product_info = st.text_area("整机规格描述", value=default_info, height=120)
 
     # --- Main: 标签页 ---
     tab_main, tab_config = st.tabs(["任务台", "参数配置"])
@@ -309,7 +308,8 @@ def main():
             }
             if generator.save_config(new_config):
                 st.success("配置已更新")
-                st.experimental_rerun()
+                # 关键修复：使用 st.rerun() 替代 st.experimental_rerun()
+                st.rerun()
 
     # === Tab 1: 主任务 (Main) ===
     with tab_main:
